@@ -4,7 +4,6 @@ pipeline {
         pollSCM '* * * * *'
     }
     stages {
-        
         stage('Build') {
             steps {
                 sh 'gradle assemble'
