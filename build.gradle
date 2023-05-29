@@ -35,9 +35,9 @@ tasks.named('test') {
 String imageName = "${project.group}/${project.name}"
 docker {
 	dockerfile file('Dockerfile')
-	dependsOn(tasks.bootJar.name)
+	// dependsOn(tasks.findByPath("build"))
 	name imageName
-	files bootJar.archiveFile.get()
+	files bootJar.archivePath
 	buildArgs(['JAR_FILE': "${bootJar.archiveFileName.get()}"])
 }
 dockerRun {
