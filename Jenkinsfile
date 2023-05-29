@@ -1,7 +1,6 @@
 node {
     
     stages {
-        
         stage('Build') {
             steps {
                 sh 'gradle assemble -g ~/.gradle'
