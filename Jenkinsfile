@@ -1,7 +1,11 @@
 node {
     
     stages {
-        
+        stage("Clone the project") {
+            steps{
+                git branch: 'development', url: 'https://gitlab.com/trial-group353121/gradle-jenkins.git'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'gradle assemble -g ~/.gradle'
