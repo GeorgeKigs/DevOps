@@ -1,29 +1,21 @@
 node {
-    agent any
-    
     stage("Clone the project") {
         git branch: 'development', url: 'https://gitlab.com/trial-group353121/gradle-jenkins.git'
     }
-    
-    stage('Build') {
-        steps {
-            sh 'gradle assemble -g ~/.gradle'
-        }
+    stage("check path"){
+        sh 'echo $PATH'
     }
-        stage('Test') {
-        steps {
-            sh 'gradle test -g ~/.gradle'
-        }
+    stage('Build') {
+        sh 'gradle assemble -g ~/.gradle'
+    }
+    stage('Test') {
+        sh 'gradle test -g ~/.gradle'
     }
     stage('Build Docker Image') {
-        steps {
-            sh 'gradle docker -g ~/.gradle'
-        }
+        sh 'gradle docker -g ~/.gradle'
     }
     stage('Run Docker Image') {
-        steps {
-            sh 'gradle dockerRun -g ~/.gradle'
-        }
+        sh 'gradle dockerRun -g ~/.gradle'
     }
     
 }
