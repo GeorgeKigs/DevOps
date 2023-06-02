@@ -30,7 +30,7 @@ if ! command -v docker &>/dev/null; then
 fi
 
 # Start Docker service
-sudo systemctl start docker
+# sudo systemctl start docker
 
 # Set appropriate permissions for the Docker daemon socket
 sudo chmod 666 /var/run/docker.sock
