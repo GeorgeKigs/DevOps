@@ -1,5 +1,36 @@
 pipeline{
-    agent any
+    agent {
+        kubernetes {
+            yaml '''
+                apiVersion: v1
+                kind: Pod
+                metadata: 
+                    labels: 
+                        name: test-gradle-pipelines
+                spec: 
+                    containers: 
+                        -   name: maven
+                            image: gradle:8.1.1-jdk11-alpine
+                            command: 
+                                -   cat
+                    tty: true 
+
+                    volumeMounts:
+                        -   mountPath: /var/lib/docker
+                            name: jenkins-images
+                        -   mountPath: "/var/run/docker.sock"
+                            name: dockersock
+                            
+                    volumes:
+                        -   name: jenkins-images
+                            persistentVolumeClaim:
+                                claimName: efs-claim-jenkins1
+                        -   name: dockersock
+                            hostPath:
+                                path: /var/run/docker.sock 
+            '''
+        }
+    }
     
     stages {
         stage('Clone Repository'){
@@ -25,7 +56,7 @@ pipeline{
             }
         }
 
-        stagestage("Runing unit tests") {
+        stage("Runing unit tests") {
                 steps{
                     sh 'gradle test'
                 }
@@ -35,7 +66,7 @@ pipeline{
             steps {
                 steps {
                     sh "docker info"
-                    sh "sh 'gradle docker'"
+                    sh 'gradle docker'
                 }
             }
         }   
