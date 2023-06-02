@@ -1,21 +1,20 @@
 node {
     stage("Clone the project") {
-        git branch: 'development', url: 'https://gitlab.com/trial-group353121/gradle-jenkins.git'
+        git branch: 'development',
+        credentialsId: 'new-gitlab-token',
+        url: 'https://gitlab.com/trial-group353121/gradle-jenkins.git'
     }
     stage("check path"){
         sh 'echo $PATH'
     }
     stage('Build') {
-        sh 'gradle assemble -g ~/.gradle'
+        sh 'gradle assemble'
     }
     stage('Test') {
-        sh 'gradle test -g ~/.gradle'
+        sh 'gradle test'
     }
     stage('Build Docker Image') {
-        sh 'gradle docker -g ~/.gradle'
+        sh 'gradle docker'
     }
-    stage('Run Docker Image') {
-        sh 'gradle dockerRun -g ~/.gradle'
-    }
-    
+
 }
