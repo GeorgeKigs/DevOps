@@ -25,12 +25,10 @@ pipeline{
             }
         }
 
-        stage("Tests and Deployment") {
-            stage("Runing unit tests") {
+        stagestage("Runing unit tests") {
                 steps{
                     sh 'gradle test'
                 }
-            }
         }
         // // Build Docker Image
         stage('Build Docker Image') {
