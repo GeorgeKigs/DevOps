@@ -25,7 +25,7 @@ pipeline{
             }
         }
 
-        stagestage("Runing unit tests") {
+        stage("Runing unit tests") {
                 steps{
                     sh 'gradle test'
                 }
