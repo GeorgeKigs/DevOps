@@ -15,11 +15,12 @@
 # rm -rf /opt/gradle/gradle-8.1.1
 
 # Install Gradle
-# if ! [ -d /opt/gradle/gradle-8.1.1-bin/ ]; then
-# wget https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -P /tmp
-# sudo unzip -d /opt/gradle /tmp/gradle-8.1.1-bin.zip
-# fi
+if ! [ -d /opt/gradle/gradle-8.1.1-bin/ ]; then
+wget https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -P /tmp
+sudo unzip -d /opt/gradle /tmp/gradle-8.1.1-bin.zip
+fi
 echo "export PATH=/opt/gradle/gradle-8.1.1/bin:\$PATH" >> ~/.bashrc
+echo $PATH
 source ~/.bashrc
 
 # Add jenkins user to docker group
