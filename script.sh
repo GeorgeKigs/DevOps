@@ -19,9 +19,9 @@ if ! [ -d /opt/gradle/gradle-8.1.1/bin/ ]; then
 wget https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -P /tmp
 sudo unzip -d /opt/gradle /tmp/gradle-8.1.1-bin.zip
 fi
-export PATH="/opt/gradle/gradle-8.1.1/bin:$PATH" >> ~/.bashrc
+export PATH=$PATH:/opt/gradle/gradle-8.1.1/bin
 
-source ~/.bashrc
+# source ~/.bashrc
 echo $PATH
 # Add jenkins user to docker group
 # sudo usermod -aG docker jenkins
