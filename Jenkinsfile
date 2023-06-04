@@ -53,7 +53,10 @@ gradle test
         stage('Build Docker Image') {
             steps{
                 sh "docker info"
-                sh 'gradle docker'
+                sh """
+                export PATH=$PATH:/opt/gradle/gradle-8.1.1/bin 
+                gradle docker
+                """
         }   
     }
 }} 
