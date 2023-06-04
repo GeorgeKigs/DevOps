@@ -46,7 +46,7 @@ wget https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -P /tmp
 sudo unzip -d /opt/gradle /tmp/gradle-8.1.1-bin.zip
 fi
 export PATH=$PATH:/opt/gradle/gradle-8.1.1/bin
-gradle test'
+gradle test
 """
         }}
         // // Build Docker Image
