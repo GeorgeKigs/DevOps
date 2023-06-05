@@ -64,7 +64,7 @@ pipeline{
                     retry(3) {
                         // sh 'docker tag test-jenkins-pipeline:latest 767998910116.dkr.ecr.eu-west-1.amazonaws.com/test-jenkins-pipeline:latest'
                         sh "cp aws_auth.json ~/.docker/config.json"
-                        sh "docker push 767998910116.dkr.ecr.eu-west-1.amazonaws.com/test-jenkins-pipeline:latest"
+                        sh "docker push 767998910116.dkr.ecr.eu-west-1.amazonaws.com/test-jenkins-pipeline:spring-boot-ci-cd"
                     }
                 }
             }
