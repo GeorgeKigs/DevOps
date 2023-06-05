@@ -55,15 +55,7 @@ pipeline{
                 gradle dockerTagAws-image"""
             }   
         }
-        stage('Login to ECR'){
-          steps{
-            script{
-              withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AKIA3FUCNL2SIAEDK2TC', credentialsId: '6c90b173-f192-4a8e-a50d-cd4b66b11db2', secretKeyVariable: '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']]) {
-              sh 'aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 767998910116.dkr.ecr.eu-west-1.amazonaws.com'
-            }
-          }
-        }
-        }
+        
 
 
         stage('Push Image to UAT AWS Registry') {
@@ -71,6 +63,7 @@ pipeline{
                 script {
                     retry(3) {
                         // sh 'docker tag test-jenkins-pipeline:latest 767998910116.dkr.ecr.eu-west-1.amazonaws.com/test-jenkins-pipeline:latest'
+                        sh "cp aws_auth.json ~/.docker/config.json"
                         sh "docker push 767998910116.dkr.ecr.eu-west-1.amazonaws.com/test-jenkins-pipeline:latest"
                     }
                 }
