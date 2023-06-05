@@ -49,8 +49,10 @@ pipeline{
                 sh """
                     export PATH=$PATH:/opt/gradle/gradle-8.1.1/bin 
                     gradle docker
-                    gradle dockerTagAws-image
                 """
+                sh """
+                export PATH=$PATH:/opt/gradle/gradle-8.1.1/bin
+                gradle dockerTagAws-image"""
             }   
         }
         stage('Login to ECR'){
